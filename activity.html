@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>街区活动</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/index.css">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/template-web.js"></script>
+	<script src="js/index.js"></script>
+	<script type="text/html" id="activity-template">
+		{{each data value}}
+			<li class="list-group-item">
+		    	<h4><a href="#">{{value.atitle}}</a></h4>
+	    		<h5 class="activityInfo">{{value.ainfo}}</h5>
+		    	<h5 class="activityInfo">{{value.adate}}</h5>
+		    </li>
+		{{/each}}
+	</script>
+	<script>
+		$(function(){
+			$.post("php/activity.php", function(data){
+				var htmlstr = template("activity-template", {"data": data});
+				$("#showActivity").html(htmlstr);
+			}, "json");
+		});
+	</script>
+</head>
+<body>
+	<div class="container-fluid">
+		<!-- 头部导航 -->
+		<div class="row">
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="navbar-collapse">
+					<img class="navbar-left" src="image/index_image/logo.png" >
+					<div class="navbar-right" id="navmore">
+						<a class="btn btn-default" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+						  more
+						</a>
+						<div class="collapse" id="collapseExample">
+							<div class="well">
+							    banana							
+							</div>
+						</div>
+					</div>
+					<ul class="nav navbar-nav navbar-right" id="nav">
+						<li><a href="index.html">首&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页</a></li>
+						<li><a href="new.html">街区新闻</a></li>
+						<li><a href="company.html">入驻机构</a></li>
+						<li><a href="#">街区活动</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>	
+		
+	</div>
+	<div class="heads">
+			聚集创业服务 孵化科技企业 孕育企业文化
+	</div>
+	<div class="container containers">
+	<div class="row">
+		<div class="col-md-2">
+			<div class="panel panel-primary">
+			   	<div class="panel-heading">街区活动</div>
+			  	<div class="panel-body">
+			   		街区活动
+			  	</div>
+			</div>
+		</div>
+		<div class="col-md-10">
+			<ul class="list-group news">
+			    <li class="list-group-item">首页&gt;街区活动</li>
+			    <ul class="list-group news" id="showActivity"></ul>
+			    <li class="list-group-item">
+			    	<nav class="col-md-offset-4">
+					  	<ul class="pagination">
+					   		<li>
+					     	<a href="#" aria-label="Previous">
+					        	<span aria-hidden="true">&laquo;</span>
+					     	</a>
+					    </li>
+					    <li><a href="#">1</a></li>
+					    <li><a href="#">2</a></li>
+					    <li><a href="#">3</a></li>
+					    <li><a href="#">4</a></li>
+					    <li><a href="#">5</a></li>
+					    <li>
+					      	<a href="#" aria-label="Next">
+					        	<span aria-hidden="true">&raquo;</span>
+					      	</a>
+					    </li>
+					  </ul>
+					</nav>			    	
+			    </li>
+			</ul>
+		</div>
+	</div>
+		
+		
+	</div>
+	<div class="container-fluid bottom">
+		<nav class="navbar navbar-default navbar-fixed-bottom">
+		  <div class="container">
+		    <p>版权所有：北京海智科创科技服务有限公司</p>
+		  </div>
+		</nav>
+	</div>
+</body>
+</html>
